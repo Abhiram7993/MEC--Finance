@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head(pageTitle='Quote Result')}"></head>
+
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+    <main class="container py-5 text-center">
+        <p th:text="|A share of ${stock.name} (${stock.symbol}) costs ${#numbers.formatCurrency(stock.price)}.|"></p>
+    </main>
+    <footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

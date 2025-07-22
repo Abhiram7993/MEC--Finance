@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head(pageTitle='Register')}"></head>
+
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+    <header>
+        <div th:if="${error}" class="alert alert-danger mb-0 text-center" role="alert" th:text="${error}"></div>
+    </header>
+    <main class="container py-5 text-center">
+        <form th:action="@{/register}" method="post">
+            <div class='mb-3'>
+                <input type='text' autofocus autocomplete='off' class="form-control mx-auto w-auto" name="username" placeholder="Username">
+            </div>
+            <div class='mb-3'>
+                <input type='password' class="form-control mx-auto w-auto" name="password" placeholder="Password">
+            </div>
+            <div class='mb-3'>
+                <input type='password' class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirm Password">
+            </div>
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </main>
+    <footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

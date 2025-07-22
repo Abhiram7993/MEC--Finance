@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head(pageTitle='Portfolio')}"></head>
+
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+    <header>
+        <div th:if="${success}" class="alert alert-success mb-0 text-center" role="alert" th:text="${success}"></div>
+        <div th:if="${error}" class="alert alert-danger mb-0 text-center" role="alert" th:text="${error}"></div>
+    </header>
+    <main class="container py-5 text-center">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class='text-start'>Symbol</th>
+                <th class='text-end'>Shares</th>
+                <th class='text-end'>Price</th>
+                <th class='text-end'>TOTAL</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="holding : ${holdings}">
+                <td class='text-start' th:text="${holding.symbol}"></td>
+                <td class='text-end' th:text="${holding.shares}"></td>
+                <td class='text-end' th:text="${#numbers.formatCurrency(holding.currentPrice)}"></td>
+                <td class='text-end' th:text="${#numbers.formatCurrency(holding.totalValue)}"></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">Cash</td>
+                <td class="border-0 text-end" th:text="${#numbers.formatCurrency(cash)}"></td>
+            </tr>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="3">TOTAL</td>
+                <td class="border-0 fw-bold text-end" th:text="${#numbers.formatCurrency(totalCash)}"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </main>
+    <footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

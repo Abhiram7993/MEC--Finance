@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head(pageTitle='Transaction History')}"></head>
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+    <main class="container py-5 text-center">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class='text-start'>Symbol</th>
+                <th class='text-start'>Type</th>
+                <th class='text-end'>Shares</th>
+                <th class='text-end'>Price</th>
+                <th class='text-end'>Transacted</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction : ${transactions}">
+                <td class='text-start' th:text="${transaction.symbol}"></td>
+                <td class='text-start' th:text="${transaction.transactionType}" th:classappend="${transaction.transactionType.name() == 'BUY' ? 'text-success' : 'text-danger'}"></td>
+                <td class='text-end' th:text="${transaction.shares}"></td>
+                <td class='text-end' th:text="${#numbers.formatCurrency(transaction.pricePerShare)}"></td>
+                <td class='text-end' th:text="${#temporals.format(transaction.transactionTimestamp, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

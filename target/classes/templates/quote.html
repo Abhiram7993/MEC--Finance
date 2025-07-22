@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: head(pageTitle='Quote')}"></head>
+
+<body>
+    <nav th:replace="~{layout :: navbar}"></nav>
+    <header>
+        <div th:if="${error}" class="alert alert-danger mb-0 text-center" role="alert" th:text="${error}"></div>
+    </header>
+    <main class="container py-5 text-center">
+        <form th:action="@{/quote}" method="post">
+            <div class='mb-3'>
+                <input type='text' placeholder='Symbol' name='symbol' autofocus autocomplete='off' class="form-control mx-auto w-auto">
+            </div>
+            <button type='submit' class="btn btn-primary">Quote</button>
+        </form>
+    </main>
+    <footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>
